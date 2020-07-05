@@ -44,6 +44,10 @@ top10ranking = {}
 top10ranking['points'] = df.to_dict('records')
 
 # 5. Converter e salvar em um arquivo JSON
+js = json.dumps(top10ranking)
+fp = open('ranking.js', 'w')
+fp.write(js)
+fp.close()
 
 # Libs que serão utilizadas
 # pip install requests2
