@@ -30,6 +30,9 @@ element = driver.find_element_by_xpath("//div[@class='nba-stat-table']//table")
 html_content = element.get_attribute('outerHTML')
 
 # 2. Parsear o conteúdo HTML - BeaultifulSoup
+soup = BeautifulSoup(html_content, 'html.parser')
+table = soup.find(name='table')
+
 # 3. Estruturar o conteúdo em um Data Frame - Pandas
 # 4. Transformar os Dados em um Dicionário de dados próprio
 driver.quit()
