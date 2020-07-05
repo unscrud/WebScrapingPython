@@ -34,6 +34,10 @@ soup = BeautifulSoup(html_content, 'html.parser')
 table = soup.find(name='table')
 
 # 3. Estruturar o conteúdo em um Data Frame - Pandas
+df_full = pd.read_html(str(table))[0].head(10)
+df = df_full[['Unnamed: 0', 'PLAYER', 'TEAM', 'PTS']]
+df.columns = ['pos', 'player', 'team', 'total']
+print(df)
 # 4. Transformar os Dados em um Dicionário de dados próprio
 driver.quit()
 # 5. Converter e salvar em um arquivo JSON
