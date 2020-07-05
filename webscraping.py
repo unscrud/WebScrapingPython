@@ -3,9 +3,9 @@
 import time
 import requests
 import pandas as pd
-from bs4 import BeaultifulSoup
+from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.firefox.options import options
+from selenium.webdriver.firefox.options import Options
 import json
 
 # 1. Pegar o conteúdo HTML a partir da URL
@@ -17,12 +17,16 @@ option.headless = True
 driver = webdriver.Firefox()
 
 driver.get(url)
+time.sleep(10)
 
-driver.quit()
+driver.find_element_by_xpath(
+    "//div[@class='nba-stat-table']//table//thead//tr//th[@data-field='PTS']").click()
 
+time.sleep(10)
 # 2. Parsear o conteúdo HTML - BeaultifulSoup
 # 3. Estruturar o conteúdo em um Data Frame - Pandas
 # 4. Transformar os Dados em um Dicionário de dados próprio
+driver.quit()
 # 5. Converter e salvar em um arquivo JSON
 
 # Libs que serão utilizadas
