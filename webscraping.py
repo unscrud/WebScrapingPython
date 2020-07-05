@@ -25,9 +25,10 @@ time.sleep(5)
 driver.find_element_by_xpath(
     "//div[@class='nba-stat-table']//table//thead//tr//th[@data-field='PTS']").click()
 
-time.sleep(5)
 element = driver.find_element_by_xpath("//div[@class='nba-stat-table']//table")
 html_content = element.get_attribute('outerHTML')
+
+driver.quit()
 
 # 2. Parsear o conteúdo HTML - BeaultifulSoup
 soup = BeautifulSoup(html_content, 'html.parser')
@@ -37,9 +38,11 @@ table = soup.find(name='table')
 df_full = pd.read_html(str(table))[0].head(10)
 df = df_full[['Unnamed: 0', 'PLAYER', 'TEAM', 'PTS']]
 df.columns = ['pos', 'player', 'team', 'total']
-print(df)
+
 # 4. Transformar os Dados em um Dicionário de dados próprio
-driver.quit()
+top10ranking = {}
+top10ranking['points'] = df.to_dict('records')
+
 # 5. Converter e salvar em um arquivo JSON
 
 # Libs que serão utilizadas
