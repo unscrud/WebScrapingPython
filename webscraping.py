@@ -17,12 +17,18 @@ option.headless = True
 driver = webdriver.Firefox()
 
 driver.get(url)
-time.sleep(10)
 
+time.sleep(15)
+driver.find_element_by_id("onetrust-accept-btn-handler").click()
+
+time.sleep(5)
 driver.find_element_by_xpath(
     "//div[@class='nba-stat-table']//table//thead//tr//th[@data-field='PTS']").click()
 
-time.sleep(10)
+time.sleep(5)
+element = driver.find_element_by_xpath("//div[@class='nba-stat-table']//table")
+html_content = element.get_attribute('outerHTML')
+
 # 2. Parsear o conteúdo HTML - BeaultifulSoup
 # 3. Estruturar o conteúdo em um Data Frame - Pandas
 # 4. Transformar os Dados em um Dicionário de dados próprio
