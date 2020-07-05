@@ -9,6 +9,17 @@ from selenium.webdriver.firefox.options import options
 import json
 
 # 1. Pegar o conteúdo HTML a partir da URL
+url = "https://stats.nba.com/players/traditional/?PerMode=Totals&Season=2019-20&SeasonType=Regular%20Season&sort=PLAYER_NAME&dir=-1"
+
+option = Options()
+option.headless = True
+# webdriver.Firefox(options=option) assim executaria em background
+driver = webdriver.Firefox()
+
+driver.get(url)
+
+driver.quit()
+
 # 2. Parsear o conteúdo HTML - BeaultifulSoup
 # 3. Estruturar o conteúdo em um Data Frame - Pandas
 # 4. Transformar os Dados em um Dicionário de dados próprio
